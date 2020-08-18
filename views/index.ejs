@@ -1,0 +1,33 @@
+<header>
+    <h1>
+        A letter to Santa
+    </h1>
+</header>
+
+<main>
+    <p class="bold">Ho ho ho, what you want for christma?</p>
+
+    <form method="post" action="/send" novalidate>
+        who are you?
+        <input name="username" placeholder="charlie.brown" />
+
+        what do you want for christmas?
+        <textarea name="wish" rows="10" cols="45" maxlength="100" placeholder="Gifts!"></textarea>
+        <br />
+        <button type="submit" id="submit-letter">Send</button>
+        <br />
+        <% if (message) { %>
+        <div class="bold"><%= message %></div>
+        <% } %>
+    </form>
+</main>
+
+<footer>
+    Made with
+    <a href="https://glitch.com">Glitch</a>!
+</footer>
+
+<!-- include the Glitch button to show what the webpage is about and
+          to make it easier for folks to view source and remix -->
+<div class="glitchButton" style="position:fixed;top:20px;right:20px;"></div>
+<script src="https://button.glitch.me/button.js"></script>
