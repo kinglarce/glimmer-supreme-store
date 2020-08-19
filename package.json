@@ -15,10 +15,9 @@
     "ejs": "^3.1.5",
     "express": "^4.16.4",
     "express-layout": "^0.1.0",
-    "fs": "0.0.1-security",
+    "got": "^11.5.2",
     "morgan": "^1.9.1",
-    "path": "^0.12.7",
-    "request": "^2.88.0"
+    "path": "^0.12.7"
   },
   "engines": {
     "node": "8.x"

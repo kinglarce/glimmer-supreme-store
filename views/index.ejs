@@ -9,10 +9,10 @@
 
     <form method="post" action="/send" novalidate>
         who are you?
-        <input name="username" placeholder="charlie.brown" />
+        <input name="username" placeholder="charlie.brown" value="<%= data.username %>" />
 
         what do you want for christmas?
-        <textarea name="wish" rows="10" cols="45" maxlength="100" placeholder="Gifts!"></textarea>
+        <textarea name="wish" rows="10" cols="45" maxlength="100" placeholder="Gifts!"><%= data.wish %></textarea>
         <br />
         <button type="submit" id="submit-letter">Send</button>
         <br /><br />
