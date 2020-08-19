@@ -26,11 +26,11 @@ const yearsDifference = (dt2, dt1) => {
   return Math.abs(Math.round(diff / 365.25));
 };
 
-const getBirthdateByUsername = async (username) => {
+const getUserProfileByUsername = async (username) => {
   try {
     const userInfo = await getUserByUsername(username);
     const profile = await userProfiles.getProfileByUid(userInfo.uid);
-    return profile.birthdate;
+    return { ...userInfo, ...profile };
   } catch (error) {
     console.error(error);
     return null;
@@ -47,15 +47,20 @@ const isRegistered = async (username) => {
 };
 
 const isChild = async (username) => {
-  const birthdate = await getBirthdateByUsername(username);
-  if (!birthdate) return false;
+  const profile = await getUserProfileByUsername(username);
+  if (!profile.birthdate) return false;
   const current = new Date();
-  const parseBirthdate = new Date(birthdate);
+  const parseBirthdate = new Date(profile.birthdate);
   const years = yearsDifference(parseBirthdate, current);
   return years && years < CHILD_AGE_LIMIT;
+};
+
+const save = (username, wish) => {
+  return;
 };
 
 module.exports = {
   isRegistered,
   isChild,
+  save,
 };

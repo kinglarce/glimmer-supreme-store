@@ -9,7 +9,7 @@ router.get('/', (req, res) => {
   });
 });
 
-router.post('/send', async (req, res) => {
+router.post('/', async (req, res) => {
   const { username, wish } = req.body;
 
   if (!(await User.isRegistered(username))) {
@@ -28,7 +28,7 @@ router.post('/send', async (req, res) => {
 
   return res.render('index', {
     data: {},
-    message: 'Wish sent!',
+    message: 'Wish received!',
   });
 });
 
