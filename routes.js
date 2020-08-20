@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const User = require('./model/Users');
+const Post = require('./model/Post');
 
 router.get('/', (req, res) => {
   res.render('index', {
@@ -10,7 +11,7 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', async (req, res) => {
-  const { username, wish } = req.body;
+  const { username } = req.body;
 
   if (!(await User.isRegistered(username))) {
     return res.render('index', {
@@ -30,6 +31,7 @@ router.post('/', async (req, res) => {
     });
   }
 
+  Post.save(req.body);
   return res.render('index', {
     data: {},
     message: {

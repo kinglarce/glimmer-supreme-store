@@ -58,7 +58,7 @@ const save = (username, wish) => {
 };
 
 module.exports = {
+  getUserProfileByUsername,
   isRegistered,
   isChild,
-  save,
 };
