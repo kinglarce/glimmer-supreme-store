@@ -38,15 +38,13 @@ const getUserProfileByUsername = async (username) => {
 };
 
 const isRegistered = async (username) => {
-  try {
-    const users = await getUsers();
-    return users.some((user) => user.username === username);
-  } catch (err) {
-    return false;
-  }
+  if (!username) return false;
+  const users = await getUsers();
+  return users.some((user) => user.username === username);
 };
 
 const isChild = async (username) => {
+  if (!username) return false;
   const profile = await getUserProfileByUsername(username);
   if (!profile.birthdate) return false;
   const current = new Date();
