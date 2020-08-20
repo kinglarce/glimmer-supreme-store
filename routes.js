@@ -5,7 +5,7 @@ const User = require('./model/Users');
 router.get('/', (req, res) => {
   res.render('index', {
     data: {},
-    message: '',
+    message: {},
   });
 });
 
@@ -15,20 +15,26 @@ router.post('/', async (req, res) => {
   if (!(await User.isRegistered(username))) {
     return res.render('index', {
       data: req.body,
-      message: 'You are not registered!',
+      message: {
+        error: 'You are not registered!'
+      },
     });
   }
 
   if (!(await User.isChild(username))) {
     return res.render('index', {
       data: req.body,
-      message: 'You are above the age limit which is 10 years old!',
+      message: {
+        error: 'You are above the age limit which is 10 years old!'
+      },
     });
   }
 
   return res.render('index', {
     data: {},
-    message: 'Wish received!',
+    message: {
+      success: 'Wish received!'
+    },
   });
 });
 

@@ -16,8 +16,11 @@
         <br />
         <button type="submit" id="submit-letter">Send</button>
         <br /><br />
-        <% if (message) { %>
-        <div class="bold"><%= message %></div>
+        <% if (message.success) { %>
+        <div class="bold"><%= message.success %></div>
+        <% } %>
+        <% if (message.error) { %>
+        <div class="error-text bold"><%= message.error %></div>
         <% } %>
     </form>
 </main>
