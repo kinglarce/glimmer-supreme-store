@@ -33,7 +33,6 @@ const getUserProfileByUsername = async (username) => {
     return { ...userInfo, ...profile };
   } catch (error) {
     console.error(error);
-    return null;
   }
 };
 
@@ -46,15 +45,11 @@ const isRegistered = async (username) => {
 const isChild = async (username) => {
   if (!username) return false;
   const profile = await getUserProfileByUsername(username);
-  if (!profile.birthdate) return false;
+  if (!profile || profile.birthdate) return false;
   const current = new Date();
   const parsedBirthdate = new Date(profile.birthdate);
   const years = yearsDifference(parsedBirthdate, current);
   return years && years < CHILD_AGE_LIMIT;
-};
-
-const save = (username, wish) => {
-  return;
 };
 
 module.exports = {
