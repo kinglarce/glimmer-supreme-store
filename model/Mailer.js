@@ -17,8 +17,9 @@ const getRandomId = () => Math.random().toString(36).substring(7);
 
 const send = (data) => {
   if (!data) return;
+  const correlationId = getRandomId();
   try {
-    const correlationId = getRandomId();
+    console.log(`Correlation ID ${correlationId}: Initiating email sender`);
     const { username } = data;
     const subject = `A wish from ${username}`;
     const transporter = nodemailer.createTransport({
@@ -32,7 +33,7 @@ const send = (data) => {
 
     const message = {
       from: `Cute Kid <${FROM}>`,
-      to: TO,
+      to: `Santa <${TO}>`,
       subject,
       text: subject,
       html: getBody(data),
@@ -41,7 +42,7 @@ const send = (data) => {
     transporter.sendMail(message, () => {});
     console.log(`Correlation ID ${correlationId}: Successfully sent email for user ${username}`);
   } catch (e) {
-    console.error(error);
+    console.error(`Correlation ID ${correlationId}: ${error}`);
   }
 };
 

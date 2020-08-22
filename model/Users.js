@@ -1,4 +1,4 @@
-const got = require('got');
+const fetch = require('node-fetch');
 const url = 'https://raw.githubusercontent.com/alj-devops/santa-data/master/users.json';
 const userProfiles = require('./UserProfiles');
 
@@ -6,10 +6,10 @@ const CHILD_AGE_LIMIT = 10;
 
 const getUsers = async () => {
   try {
-    const response = await got(url);
-    return JSON.parse(response.body);
+    const response = await fetch(url);
+    return response.json();
   } catch (error) {
-    throw new Error(error.response.body);
+    throw new Error(error)
   }
 };
 
