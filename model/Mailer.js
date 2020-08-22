@@ -8,7 +8,8 @@ const getBody = (data) => {
   const { username, address, wish } = data;
   return `
     <div>Hi Santa!</div>
-    <div>This is from ${username} from ${address}</div>
+    <div>This is ${username} from ${address}.</div>
+    <br>
     <div>${wish}</div>
   `;
 };
