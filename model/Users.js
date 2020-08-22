@@ -48,8 +48,8 @@ const isChild = async (username) => {
   const profile = await getUserProfileByUsername(username);
   if (!profile.birthdate) return false;
   const current = new Date();
-  const parseBirthdate = new Date(profile.birthdate);
-  const years = yearsDifference(parseBirthdate, current);
+  const parsedBirthdate = new Date(profile.birthdate);
+  const years = yearsDifference(parsedBirthdate, current);
   return years && years < CHILD_AGE_LIMIT;
 };
 

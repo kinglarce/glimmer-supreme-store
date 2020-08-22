@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const User = require('./model/Users');
-const Post = require('./model/Post');
+const Wish = require('./model/Wish');
 
 router.get('/', (req, res) => {
   res.render('index', {
@@ -31,7 +31,7 @@ router.post('/', async (req, res) => {
     });
   }
 
-  Post.save(req.body);
+  Wish.save(req.body);
   return res.render('index', {
     data: {},
     message: {

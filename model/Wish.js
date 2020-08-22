@@ -1,7 +1,7 @@
 const users = require('./Users');
 let wishes = [];
 
-const popWish = () => wishes.shift();
+const pop = () => wishes.shift();
 
 const save = async (params) => {
   const { username, wish } = params;
@@ -12,5 +12,5 @@ const save = async (params) => {
 
 module.exports = {
   save,
-  popWish,
+  pop,
 };

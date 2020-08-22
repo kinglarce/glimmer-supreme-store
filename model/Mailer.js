@@ -1,11 +1,10 @@
 const nodemailer = require('nodemailer');
-const DEFAULT_MAILING_LIST = 'example1@vultr.com,example2@vultr.com';
 const SENDER_EMAIL = 'anastasia.roob18@ethereal.email';
 const SENDER_PASS = 'tqjbzuaapRpvdtgC3s';
 const FROM = 'do_not_reply@northpole.com';
 const TO = 'santa@northpole.com';
 
-const getMailBody = (data) => {
+const getBody = (data) => {
   const { username, address, wish } = data;
   return `
     <div>Hi Santa!</div>
@@ -14,10 +13,14 @@ const getMailBody = (data) => {
   `;
 };
 
-const sendMail = (data) => {
+const getRandomId = () => Math.random().toString(36).substring(7);
+
+const send = (data) => {
   if (!data) return;
   try {
-    const subject = `A wish from ${data.username}`;
+    const correlationId = getRandomId();
+    const { username } = data;
+    const subject = `A wish from ${username}`;
     const transporter = nodemailer.createTransport({
       host: 'smtp.ethereal.email',
       port: 587,
@@ -32,15 +35,16 @@ const sendMail = (data) => {
       to: TO,
       subject,
       text: subject,
-      html: getMailBody(data),
+      html: getBody(data),
     };
 
     transporter.sendMail(message, () => {});
+    console.log(`Correlation ID ${correlationId}: Successfully sent email for user ${username}`);
   } catch (e) {
     console.error(error);
   }
 };
 
 module.exports = {
-  sendMail,
+  send,
 };
