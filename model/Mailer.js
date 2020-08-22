@@ -1,8 +1,8 @@
 const nodemailer = require('nodemailer');
-const SENDER_EMAIL = 'anastasia.roob18@ethereal.email';
-const SENDER_PASS = 'tqjbzuaapRpvdtgC3s';
 const FROM = 'do_not_reply@northpole.com';
 const TO = 'santa@northpole.com';
+const SENDER_EMAIL = process.env.EMAIL_CLIENT_SENDER_EMAIL;
+const SENDER_PASS = process.env.EMAIL_CLIENT_SENDER_PASSWORD;
 
 const getBody = (data) => {
   const { username, address, wish } = data;
