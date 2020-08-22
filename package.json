@@ -17,6 +17,8 @@
     "express-layout": "^0.1.0",
     "got": "^11.5.2",
     "morgan": "^1.9.1",
+    "node-cron": "^2.0.3",
+    "nodemailer": "^6.4.11",
     "path": "^0.12.7"
   },
   "engines": {

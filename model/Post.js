@@ -1,13 +1,16 @@
 const users = require('./Users');
-let pendingWishes = [];
+let wishes = [];
+
+const popWish = () => wishes.shift();
 
 const save = async (params) => {
   const { username, wish } = params;
   const { address } = await users.getUserProfileByUsername(username);
-  const data = { username, address, wish };
-  pendingWishes.push(data);
+  const data = { username, address, wish, created_date: new Date() };
+  wishes.push(data);
 };
 
 module.exports = {
   save,
+  popWish,
 };
